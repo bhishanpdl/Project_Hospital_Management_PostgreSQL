@@ -37,7 +37,7 @@ flavor of SQL from mySQL flavor of [wikibooks](https://en.wikibooks.org/wiki/SQL
 1. Undergoes
 
 The entity relation is given below:
-![](ER_the_hospital.png)
+![](images/ER_the_hospital.png)
 
 # Using SQL Queries in jupyter Notebook
 - First we need to install postgresql and its official app [pgAdmin](https://www.pgadmin.org).
