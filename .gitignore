@@ -1,18 +1,39 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+##==============================================
+## Special files
+##==============================================
 
-# Other files and folders
-.settings/
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+##==============================================
+## Debug files
+##==============================================
+*.dSYM/
+*.su
+
+
+##==============================================
+## OS generated files
+##==============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+?Icon?
+
+
+##==============================================
+## Python caches
+##==============================================
+__pycache__/
+*/__pycache__
+*.pyc
+
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+
+ 
