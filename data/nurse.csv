@@ -1,0 +1,4 @@
+"employeeid","name","position","registered","ssn"
+101,"Carla Espinosa","Head Nurse",True,111111110
+102,"Laverne Roberts","Nurse",True,222222220
+103,"Paul Flowers","Nurse",False,333333330

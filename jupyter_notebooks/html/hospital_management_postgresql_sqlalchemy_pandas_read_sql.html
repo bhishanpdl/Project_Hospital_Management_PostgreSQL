@@ -9,10 +9,10 @@
 
 
 <style type="text/css">
-    pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14260,7 +14260,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><h1>Table of Contents<span class="tocSkip"></span></h1></p>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Introduction" data-toc-modified-id="Introduction-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Introduction</a></span></li><li><span><a href="#Imports" data-toc-modified-id="Imports-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Imports</a></span></li><li><span><a href="#Load-the-Database-and-Tables" data-toc-modified-id="Load-the-Database-and-Tables-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Load the Database and Tables</a></span></li><li><span><a href="#Exercise-Questions" data-toc-modified-id="Exercise-Questions-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Exercise Questions</a></span><ul class="toc-item"><li><span><a href="#Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-they-have-never-been-certified-to-perform." data-toc-modified-id="Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-they-have-never-been-certified-to-perform.-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Obtain the names of all physicians that have performed a medical procedure they have never been certified to perform.</a></span></li><li><span><a href="#Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on." data-toc-modified-id="Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on.-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on.</a></span></li><li><span><a href="#Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-that-they-are-certified-to-perform,-but-such-that-the-procedure-was-done-at-a-date-(Undergoes.Date)-after-the-physician's-certification-expired-(Trained_In.CertificationExpires)." data-toc-modified-id="Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-that-they-are-certified-to-perform,-but-such-that-the-procedure-was-done-at-a-date-(Undergoes.Date)-after-the-physician's-certification-expired-(Trained_In.CertificationExpires).-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Obtain the names of all physicians that have performed a medical procedure that they are certified to perform, but such that the procedure was done at a date (Undergoes.Date) after the physician's certification expired (Trained_In.CertificationExpires).</a></span></li><li><span><a href="#Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on,-and-date-when-the-certification-expired." data-toc-modified-id="Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on,-and-date-when-the-certification-expired.-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on, and date when the certification expired.</a></span></li><li><span><a href="#Obtain-the-information-for-appointments-where-a-patient-met-with-a-physician-other-than-his/her-primary-care-physician.-Show-the-following-information:-Patient-name,-physician-name,-nurse-name-(if-any),-start-and-end-time-of-appointment,-examination-room,-and-the-name-of-the-patient's-primary-care-physician." data-toc-modified-id="Obtain-the-information-for-appointments-where-a-patient-met-with-a-physician-other-than-his/her-primary-care-physician.-Show-the-following-information:-Patient-name,-physician-name,-nurse-name-(if-any),-start-and-end-time-of-appointment,-examination-room,-and-the-name-of-the-patient's-primary-care-physician.-4.5"><span class="toc-item-num">4.5&nbsp;&nbsp;</span>Obtain the information for appointments where a patient met with a physician other than his/her primary care physician. Show the following information: Patient name, physician name, nurse name (if any), start and end time of appointment, examination room, and the name of the patient's primary care physician.</a></span></li><li><span><a href="#The-Patient-field-in-Undergoes-is-redundant,-since-we-can-obtain-it-from-the-Stay-table.-There-are-no-constraints-in-force-to-prevent-inconsistencies-between-these-two-tables.-More-specifically,-the-Undergoes-table-may-include-a-row-where-the-patient-ID-does-not-match-the-one-we-would-obtain-from-the-Stay-table-through-the-Undergoes.Stay-foreign-key.-Select-all-rows-from-Undergoes-that-exhibit-this-inconsistency." data-toc-modified-id="The-Patient-field-in-Undergoes-is-redundant,-since-we-can-obtain-it-from-the-Stay-table.-There-are-no-constraints-in-force-to-prevent-inconsistencies-between-these-two-tables.-More-specifically,-the-Undergoes-table-may-include-a-row-where-the-patient-ID-does-not-match-the-one-we-would-obtain-from-the-Stay-table-through-the-Undergoes.Stay-foreign-key.-Select-all-rows-from-Undergoes-that-exhibit-this-inconsistency.-4.6"><span class="toc-item-num">4.6&nbsp;&nbsp;</span>The Patient field in Undergoes is redundant, since we can obtain it from the Stay table. There are no constraints in force to prevent inconsistencies between these two tables. More specifically, the Undergoes table may include a row where the patient ID does not match the one we would obtain from the Stay table through the Undergoes.Stay foreign key. Select all rows from Undergoes that exhibit this inconsistency.</a></span></li><li><span><a href="#Obtain-the-names-of-all-the-nurses-who-have-ever-been-on-call-for-room-123." data-toc-modified-id="Obtain-the-names-of-all-the-nurses-who-have-ever-been-on-call-for-room-123.-4.7"><span class="toc-item-num">4.7&nbsp;&nbsp;</span>Obtain the names of all the nurses who have ever been on call for room 123.</a></span></li><li><span><a href="#The-hospital-has-several-examination-rooms-where-appointments-take-place.-Obtain-the-number-of-appointments-that-have-taken-place-in-each-examination-room." data-toc-modified-id="The-hospital-has-several-examination-rooms-where-appointments-take-place.-Obtain-the-number-of-appointments-that-have-taken-place-in-each-examination-room.-4.8"><span class="toc-item-num">4.8&nbsp;&nbsp;</span>The hospital has several examination rooms where appointments take place. Obtain the number of appointments that have taken place in each examination room.</a></span></li><li><span><a href="#Obtain-the-names-of-all-patients-(also-include,-for-each-patient,-the-name-of-the-patient's-primary-care-physician),-such-that-\emph{all}-the-following-are-true:" data-toc-modified-id="Obtain-the-names-of-all-patients-(also-include,-for-each-patient,-the-name-of-the-patient's-primary-care-physician),-such-that-\emph{all}-the-following-are-true:-4.9"><span class="toc-item-num">4.9&nbsp;&nbsp;</span>Obtain the names of all patients (also include, for each patient, the name of the patient's primary care physician), such that \emph{all} the following are true:</a></span></li></ul></li></ul></div>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Introduction" data-toc-modified-id="Introduction-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Introduction</a></span></li><li><span><a href="#Imports" data-toc-modified-id="Imports-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Imports</a></span></li><li><span><a href="#Load-the-Database-and-Tables" data-toc-modified-id="Load-the-Database-and-Tables-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Load the Database and Tables</a></span></li><li><span><a href="#Exercise-Questions" data-toc-modified-id="Exercise-Questions-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Exercise Questions</a></span><ul class="toc-item"><li><span><a href="#Q1:-Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-they-have-never-been-certified-to-perform." data-toc-modified-id="Q1:-Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-they-have-never-been-certified-to-perform.-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Q1: Obtain the names of all physicians that have performed a medical procedure they have never been certified to perform.</a></span></li><li><span><a href="#Q2:-Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on." data-toc-modified-id="Q2:-Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on.-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Q2: Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on.</a></span></li><li><span><a href="#Q3:-Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-that-they-are-certified-to-perform,-but-such-that-the-procedure-was-done-at-a-date-(Undergoes.Date)-after-the-physician's-certification-expired-(Trained_In.CertificationExpires)." data-toc-modified-id="Q3:-Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-that-they-are-certified-to-perform,-but-such-that-the-procedure-was-done-at-a-date-(Undergoes.Date)-after-the-physician's-certification-expired-(Trained_In.CertificationExpires).-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Q3: Obtain the names of all physicians that have performed a medical procedure that they are certified to perform, but such that the procedure was done at a date (Undergoes.Date) after the physician's certification expired (Trained_In.CertificationExpires).</a></span></li><li><span><a href="#Q4:-Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on,-and-date-when-the-certification-expired." data-toc-modified-id="Q4:-Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on,-and-date-when-the-certification-expired.-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>Q4: Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on, and date when the certification expired.</a></span></li><li><span><a href="#Q5:-Obtain-the-information-for-appointments-where-a-patient-met-with-a-physician-other-than-his/her-primary-care-physician.-Show-the-following-information:-Patient-name,-physician-name,-nurse-name-(if-any),-start-and-end-time-of-appointment,-examination-room,-and-the-name-of-the-patient's-primary-care-physician." data-toc-modified-id="Q5:-Obtain-the-information-for-appointments-where-a-patient-met-with-a-physician-other-than-his/her-primary-care-physician.-Show-the-following-information:-Patient-name,-physician-name,-nurse-name-(if-any),-start-and-end-time-of-appointment,-examination-room,-and-the-name-of-the-patient's-primary-care-physician.-4.5"><span class="toc-item-num">4.5&nbsp;&nbsp;</span>Q5: Obtain the information for appointments where a patient met with a physician other than his/her primary care physician. Show the following information: Patient name, physician name, nurse name (if any), start and end time of appointment, examination room, and the name of the patient's primary care physician.</a></span></li><li><span><a href="#Q6:-The-Patient-field-in-Undergoes-is-redundant,-since-we-can-obtain-it-from-the-Stay-table.-There-are-no-constraints-in-force-to-prevent-inconsistencies-between-these-two-tables.-More-specifically,-the-Undergoes-table-may-include-a-row-where-the-patient-ID-does-not-match-the-one-we-would-obtain-from-the-Stay-table-through-the-Undergoes.Stay-foreign-key.-Select-all-rows-from-Undergoes-that-exhibit-this-inconsistency." data-toc-modified-id="Q6:-The-Patient-field-in-Undergoes-is-redundant,-since-we-can-obtain-it-from-the-Stay-table.-There-are-no-constraints-in-force-to-prevent-inconsistencies-between-these-two-tables.-More-specifically,-the-Undergoes-table-may-include-a-row-where-the-patient-ID-does-not-match-the-one-we-would-obtain-from-the-Stay-table-through-the-Undergoes.Stay-foreign-key.-Select-all-rows-from-Undergoes-that-exhibit-this-inconsistency.-4.6"><span class="toc-item-num">4.6&nbsp;&nbsp;</span>Q6: The Patient field in Undergoes is redundant, since we can obtain it from the Stay table. There are no constraints in force to prevent inconsistencies between these two tables. More specifically, the Undergoes table may include a row where the patient ID does not match the one we would obtain from the Stay table through the Undergoes.Stay foreign key. Select all rows from Undergoes that exhibit this inconsistency.</a></span></li><li><span><a href="#Q7:-Obtain-the-names-of-all-the-nurses-who-have-ever-been-on-call-for-room-123." data-toc-modified-id="Q7:-Obtain-the-names-of-all-the-nurses-who-have-ever-been-on-call-for-room-123.-4.7"><span class="toc-item-num">4.7&nbsp;&nbsp;</span>Q7: Obtain the names of all the nurses who have ever been on call for room 123.</a></span></li><li><span><a href="#Q8:-The-hospital-has-several-examination-rooms-where-appointments-take-place.-Obtain-the-number-of-appointments-that-have-taken-place-in-each-examination-room." data-toc-modified-id="Q8:-The-hospital-has-several-examination-rooms-where-appointments-take-place.-Obtain-the-number-of-appointments-that-have-taken-place-in-each-examination-room.-4.8"><span class="toc-item-num">4.8&nbsp;&nbsp;</span>Q8: The hospital has several examination rooms where appointments take place. Obtain the number of appointments that have taken place in each examination room.</a></span></li><li><span><a href="#Q9:-Obtain-the-names-of-all-patients-(also-include,-for-each-patient,-the-name-of-the-patient's-primary-care-physician),-such-that-all-the-following-are-true:" data-toc-modified-id="Q9:-Obtain-the-names-of-all-patients-(also-include,-for-each-patient,-the-name-of-the-patient's-primary-care-physician),-such-that-all-the-following-are-true:-4.9"><span class="toc-item-num">4.9&nbsp;&nbsp;</span>Q9: Obtain the names of all patients (also include, for each patient, the name of the patient's primary care physician), such that all the following are true:</a></span></li></ul></li></ul></div>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14329,7 +14329,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Load-the-Database-and-Tables">Load the Database and Tables<a class="anchor-link" href="#Load-the-Database-and-Tables">&#182;</a></h1><p><img src="ER_the_hospital.png" alt="Drawing" style="width: 1800px;height:1000px;"/></p>
+<h1 id="Load-the-Database-and-Tables">Load the Database and Tables<a class="anchor-link" href="#Load-the-Database-and-Tables">&#182;</a></h1><p><img src="images/ER_the_hospital.png" alt="Drawing" style="width: 1800px;height:1000px;"/></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15497,7 +15497,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-they-have-never-been-certified-to-perform.">Obtain the names of all physicians that have performed a medical procedure they have never been certified to perform.<a class="anchor-link" href="#Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-they-have-never-been-certified-to-perform.">&#182;</a></h2>
+<h2 id="Q1:-Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-they-have-never-been-certified-to-perform.">Q1: Obtain the names of all physicians that have performed a medical procedure they have never been certified to perform.<a class="anchor-link" href="#Q1:-Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-they-have-never-been-certified-to-perform.">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -15731,7 +15731,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on.">Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on.<a class="anchor-link" href="#Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on.">&#182;</a></h2>
+<h2 id="Q2:-Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on.">Q2: Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on.<a class="anchor-link" href="#Q2:-Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on.">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -15820,11 +15820,11 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT P.Name,Pr.Name,U.Date,Pt.Name FROM </span>
+<span class="s2">SELECT P.Name as Physician_Name,Pr.Name as Procedure_Name,U.Date,Pt.Name Patient_Name FROM </span>
 <span class="s2"> Physician AS P,    </span>
 <span class="s2"> Procedure AS Pr,</span>
 <span class="s2"> Undergoes AS U,</span>
@@ -15832,7 +15832,11 @@ a.anchor-link {
 <span class="s2"> (SELECT Physician, Procedure FROM Undergoes </span>
 <span class="s2">    EXCEPT </span>
 <span class="s2">    SELECT Physician, Treatment FROM Trained_in) AS Pe  </span>
-<span class="s2"> WHERE P.EmployeeID=Pe.Physician AND Pe.Procedure=Pr.Code AND Pe.Physician=U.Physician AND Pe.Procedure=U.Procedure AND U.Patient=Pt.SSN</span>
+<span class="s2"> WHERE P.EmployeeID=Pe.Physician</span>
+<span class="s2">       AND Pe.Procedure=Pr.Code</span>
+<span class="s2">       AND Pe.Physician=U.Physician</span>
+<span class="s2">       AND Pe.Procedure=U.Procedure</span>
+<span class="s2">       AND U.Patient=Pt.SSN</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">conn</span><span class="p">)</span>
@@ -15851,7 +15855,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
 
 
 
@@ -15874,10 +15878,10 @@ a.anchor-link {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>name</th>
-      <th>name</th>
+      <th>physician_name</th>
+      <th>procedure_name</th>
       <th>date</th>
-      <th>name</th>
+      <th>patient_name</th>
     </tr>
   </thead>
   <tbody>
@@ -15902,7 +15906,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-that-they-are-certified-to-perform,-but-such-that-the-procedure-was-done-at-a-date-(Undergoes.Date)-after-the-physician's-certification-expired-(Trained_In.CertificationExpires).">Obtain the names of all physicians that have performed a medical procedure that they are certified to perform, but such that the procedure was done at a date (Undergoes.Date) after the physician's certification expired (Trained_In.CertificationExpires).<a class="anchor-link" href="#Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-that-they-are-certified-to-perform,-but-such-that-the-procedure-was-done-at-a-date-(Undergoes.Date)-after-the-physician's-certification-expired-(Trained_In.CertificationExpires).">&#182;</a></h2>
+<h2 id="Q3:-Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-that-they-are-certified-to-perform,-but-such-that-the-procedure-was-done-at-a-date-(Undergoes.Date)-after-the-physician's-certification-expired-(Trained_In.CertificationExpires).">Q3: Obtain the names of all physicians that have performed a medical procedure that they are certified to perform, but such that the procedure was done at a date (Undergoes.Date) after the physician's certification expired (Trained_In.CertificationExpires).<a class="anchor-link" href="#Q3:-Obtain-the-names-of-all-physicians-that-have-performed-a-medical-procedure-that-they-are-certified-to-perform,-but-such-that-the-procedure-was-done-at-a-date-(Undergoes.Date)-after-the-physician's-certification-expired-(Trained_In.CertificationExpires).">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -15995,7 +15999,10 @@ a.anchor-link {
 <span class="s2"> Physician AS P,    </span>
 <span class="s2"> Trained_In T,</span>
 <span class="s2"> Undergoes AS U</span>
-<span class="s2"> WHERE T.Physician=U.Physician AND T.Treatment=U.Procedure AND U.Date&gt;T.CertificationExpires AND P.EmployeeID=U.Physician</span>
+<span class="s2"> WHERE T.Physician=U.Physician</span>
+<span class="s2">       AND T.Treatment=U.Procedure</span>
+<span class="s2">       AND U.Date&gt;T.CertificationExpires</span>
+<span class="s2">       AND P.EmployeeID=U.Physician</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">conn</span><span class="p">)</span>
@@ -16059,7 +16066,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on,-and-date-when-the-certification-expired.">Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on, and date when the certification expired.<a class="anchor-link" href="#Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on,-and-date-when-the-certification-expired.">&#182;</a></h2>
+<h2 id="Q4:-Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on,-and-date-when-the-certification-expired.">Q4: Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on, and date when the certification expired.<a class="anchor-link" href="#Q4:-Same-as-the-previous-query,-but-include-the-following-information-in-the-results:-Physician-name,-name-of-procedure,-date-when-the-procedure-was-carried-out,-name-of-the-patient-the-procedure-was-carried-out-on,-and-date-when-the-certification-expired.">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -16068,7 +16075,8 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT P.Name AS Physician, Pr.Name AS Procedure, U.Date, Pt.Name AS Patient, T.CertificationExpires</span>
+<span class="s2">SELECT P.Name AS Physician, Pr.Name AS Procedure, U.Date,</span>
+<span class="s2">       Pt.Name AS Patient, T.CertificationExpires</span>
 <span class="s2">  FROM Physician P, Undergoes U, Patient Pt, Procedure Pr, Trained_In T</span>
 <span class="s2">  WHERE U.Patient = Pt.SSN</span>
 <span class="s2">    AND U.Procedure = Pr.Code</span>
@@ -16147,7 +16155,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Obtain-the-information-for-appointments-where-a-patient-met-with-a-physician-other-than-his/her-primary-care-physician.-Show-the-following-information:-Patient-name,-physician-name,-nurse-name-(if-any),-start-and-end-time-of-appointment,-examination-room,-and-the-name-of-the-patient's-primary-care-physician.">Obtain the information for appointments where a patient met with a physician other than his/her primary care physician. Show the following information: Patient name, physician name, nurse name (if any), start and end time of appointment, examination room, and the name of the patient's primary care physician.<a class="anchor-link" href="#Obtain-the-information-for-appointments-where-a-patient-met-with-a-physician-other-than-his/her-primary-care-physician.-Show-the-following-information:-Patient-name,-physician-name,-nurse-name-(if-any),-start-and-end-time-of-appointment,-examination-room,-and-the-name-of-the-patient's-primary-care-physician.">&#182;</a></h2>
+<h2 id="Q5:-Obtain-the-information-for-appointments-where-a-patient-met-with-a-physician-other-than-his/her-primary-care-physician.-Show-the-following-information:-Patient-name,-physician-name,-nurse-name-(if-any),-start-and-end-time-of-appointment,-examination-room,-and-the-name-of-the-patient's-primary-care-physician.">Q5: Obtain the information for appointments where a patient met with a physician other than his/her primary care physician. Show the following information: Patient name, physician name, nurse name (if any), start and end time of appointment, examination room, and the name of the patient's primary care physician.<a class="anchor-link" href="#Q5:-Obtain-the-information-for-appointments-where-a-patient-met-with-a-physician-other-than-his/her-primary-care-physician.-Show-the-following-information:-Patient-name,-physician-name,-nurse-name-(if-any),-start-and-end-time-of-appointment,-examination-room,-and-the-name-of-the-patient's-primary-care-physician.">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -16156,8 +16164,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT Pt.Name AS Patient, Ph.Name AS Physician, N.Name AS Nurse, A.Start, A.&quot;End&quot;, A.ExaminationRoom, PhPCP.Name AS PCP</span>
-<span class="s2">  FROM Patient Pt, Physician Ph, Physician PhPCP, Appointment A LEFT JOIN Nurse N ON A.PrepNurse = N.EmployeeID</span>
+<span class="s2">SELECT Pt.Name AS Patient, Ph.Name AS Physician, N.Name AS Nurse,</span>
+<span class="s2">       A.Start, A.&quot;End&quot;, A.ExaminationRoom, PhPCP.Name AS PCP</span>
+<span class="s2">  FROM Patient Pt, Physician Ph, Physician PhPCP,</span>
+<span class="s2">       Appointment A LEFT JOIN Nurse N ON A.PrepNurse = N.EmployeeID</span>
 <span class="s2"> WHERE A.Patient = Pt.SSN</span>
 <span class="s2">   AND A.Physician = Ph.EmployeeID</span>
 <span class="s2">   AND Pt.PCP = PhPCP.EmployeeID</span>
@@ -16267,7 +16277,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="The-Patient-field-in-Undergoes-is-redundant,-since-we-can-obtain-it-from-the-Stay-table.-There-are-no-constraints-in-force-to-prevent-inconsistencies-between-these-two-tables.-More-specifically,-the-Undergoes-table-may-include-a-row-where-the-patient-ID-does-not-match-the-one-we-would-obtain-from-the-Stay-table-through-the-Undergoes.Stay-foreign-key.-Select-all-rows-from-Undergoes-that-exhibit-this-inconsistency.">The Patient field in Undergoes is redundant, since we can obtain it from the Stay table. There are no constraints in force to prevent inconsistencies between these two tables. More specifically, the Undergoes table may include a row where the patient ID does not match the one we would obtain from the Stay table through the Undergoes.Stay foreign key. Select all rows from Undergoes that exhibit this inconsistency.<a class="anchor-link" href="#The-Patient-field-in-Undergoes-is-redundant,-since-we-can-obtain-it-from-the-Stay-table.-There-are-no-constraints-in-force-to-prevent-inconsistencies-between-these-two-tables.-More-specifically,-the-Undergoes-table-may-include-a-row-where-the-patient-ID-does-not-match-the-one-we-would-obtain-from-the-Stay-table-through-the-Undergoes.Stay-foreign-key.-Select-all-rows-from-Undergoes-that-exhibit-this-inconsistency.">&#182;</a></h2>
+<h2 id="Q6:-The-Patient-field-in-Undergoes-is-redundant,-since-we-can-obtain-it-from-the-Stay-table.-There-are-no-constraints-in-force-to-prevent-inconsistencies-between-these-two-tables.-More-specifically,-the-Undergoes-table-may-include-a-row-where-the-patient-ID-does-not-match-the-one-we-would-obtain-from-the-Stay-table-through-the-Undergoes.Stay-foreign-key.-Select-all-rows-from-Undergoes-that-exhibit-this-inconsistency.">Q6: The Patient field in Undergoes is redundant, since we can obtain it from the Stay table. There are no constraints in force to prevent inconsistencies between these two tables. More specifically, the Undergoes table may include a row where the patient ID does not match the one we would obtain from the Stay table through the Undergoes.Stay foreign key. Select all rows from Undergoes that exhibit this inconsistency.<a class="anchor-link" href="#Q6:-The-Patient-field-in-Undergoes-is-redundant,-since-we-can-obtain-it-from-the-Stay-table.-There-are-no-constraints-in-force-to-prevent-inconsistencies-between-these-two-tables.-More-specifically,-the-Undergoes-table-may-include-a-row-where-the-patient-ID-does-not-match-the-one-we-would-obtain-from-the-Stay-table-through-the-Undergoes.Stay-foreign-key.-Select-all-rows-from-Undergoes-that-exhibit-this-inconsistency.">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -16355,7 +16365,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Obtain-the-names-of-all-the-nurses-who-have-ever-been-on-call-for-room-123.">Obtain the names of all the nurses who have ever been on call for room 123.<a class="anchor-link" href="#Obtain-the-names-of-all-the-nurses-who-have-ever-been-on-call-for-room-123.">&#182;</a></h2>
+<h2 id="Q7:-Obtain-the-names-of-all-the-nurses-who-have-ever-been-on-call-for-room-123.">Q7: Obtain the names of all the nurses who have ever been on call for room 123.<a class="anchor-link" href="#Q7:-Obtain-the-names-of-all-the-nurses-who-have-ever-been-on-call-for-room-123.">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -16439,7 +16449,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="The-hospital-has-several-examination-rooms-where-appointments-take-place.-Obtain-the-number-of-appointments-that-have-taken-place-in-each-examination-room.">The hospital has several examination rooms where appointments take place. Obtain the number of appointments that have taken place in each examination room.<a class="anchor-link" href="#The-hospital-has-several-examination-rooms-where-appointments-take-place.-Obtain-the-number-of-appointments-that-have-taken-place-in-each-examination-room.">&#182;</a></h2>
+<h2 id="Q8:-The-hospital-has-several-examination-rooms-where-appointments-take-place.-Obtain-the-number-of-appointments-that-have-taken-place-in-each-examination-room.">Q8: The hospital has several examination rooms where appointments take place. Obtain the number of appointments that have taken place in each examination room.<a class="anchor-link" href="#Q8:-The-hospital-has-several-examination-rooms-where-appointments-take-place.-Obtain-the-number-of-appointments-that-have-taken-place-in-each-examination-room.">&#182;</a></h2>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -16525,7 +16535,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Obtain-the-names-of-all-patients-(also-include,-for-each-patient,-the-name-of-the-patient's-primary-care-physician),-such-that-\emph{all}-the-following-are-true:">Obtain the names of all patients (also include, for each patient, the name of the patient's primary care physician), such that \emph{all} the following are true:<a class="anchor-link" href="#Obtain-the-names-of-all-patients-(also-include,-for-each-patient,-the-name-of-the-patient's-primary-care-physician),-such-that-\emph{all}-the-following-are-true:">&#182;</a></h2><ul>
+<h2 id="Q9:-Obtain-the-names-of-all-patients-(also-include,-for-each-patient,-the-name-of-the-patient's-primary-care-physician),-such-that-all-the-following-are-true:">Q9: Obtain the names of all patients (also include, for each patient, the name of the patient's primary care physician), such that all the following are true:<a class="anchor-link" href="#Q9:-Obtain-the-names-of-all-patients-(also-include,-for-each-patient,-the-name-of-the-patient's-primary-care-physician),-such-that-all-the-following-are-true:">&#182;</a></h2><ul>
 <li>The patient has been prescribed some medication by his/her primary care physician.</li>
 <li>The patient has undergone a procedure with a cost larger that $5,000</li>
 <li>The patient has had at least two appointment where the nurse who prepped the appointment was a registered nurse.</li>
