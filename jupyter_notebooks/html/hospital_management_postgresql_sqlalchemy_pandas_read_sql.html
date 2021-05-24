@@ -15506,9 +15506,8 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT Name </span>
-<span class="s2">  FROM Physician </span>
-<span class="s2"> WHERE EmployeeID IN </span>
+
+<span class="s2">SELECT Name FROM Physician WHERE EmployeeID IN </span>
 <span class="s2">       (</span>
 <span class="s2">         SELECT Physician FROM Undergoes U WHERE NOT EXISTS </span>
 <span class="s2">            (</span>
@@ -15820,7 +15819,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -15855,7 +15854,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 
 
 
@@ -16541,17 +16540,20 @@ a.anchor-link {
 <li>The patient has had at least two appointment where the nurse who prepped the appointment was a registered nurse.</li>
 <li>The patient's primary care physician is not the head of any department.</li>
 </ul>
+<p><img src="images/ER_the_hospital.png" alt="Drawing" style="width: 1800px;height:1000px;"/></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT Pt.Name, PhPCP.Name FROM Patient Pt, Physician PhPCP</span>
-<span class="s2"> WHERE Pt.PCP = PhPCP.EmployeeID</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># pcp = primary care physician</span>
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT Pt.Name as Patient, Phy.Name as Physician </span>
+<span class="s2"> FROM Patient Pt, Physician Phy</span>
+<span class="s2"> WHERE Pt.PCP = Phy.EmployeeID</span>
 <span class="s2">   AND EXISTS</span>
 <span class="s2">       (</span>
 <span class="s2">         SELECT * FROM Prescribes Pr</span>
@@ -16593,7 +16595,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[21]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[31]:</div>
 
 
 
@@ -16616,8 +16618,105 @@ a.anchor-link {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>name</th>
-      <th>name</th>
+      <th>patient</th>
+      <th>physician</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>John Smith</td>
+      <td>John Dorian</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">select Pt.name as Patient, Phy.name as Physician</span>
+<span class="s2">from Patient Pt, Physician Phy</span>
+<span class="s2">where Pt.pcp = Phy.Employeeid</span>
+
+<span class="s2">and exists(</span>
+<span class="s2">  select * from Prescribes Pr</span>
+<span class="s2">  where Pr.patient = Pt.ssn</span>
+<span class="s2">  and Pr.Physician = Pt.pcp</span>
+<span class="s2">)</span>
+
+<span class="s2">and exists(</span>
+<span class="s2">  select * from Undergoes U, Procedure Pr</span>
+<span class="s2">  where U.procedure = Pr.code</span>
+<span class="s2">  and U.patient = Pt.ssn</span>
+<span class="s2">  and Pr.cost &gt; 5000</span>
+<span class="s2">)</span>
+
+<span class="s2">and 2 &lt;= (</span>
+<span class="s2">  select count(A.appointmentid) from Appointment A, Nurse N</span>
+<span class="s2">  where A.prepnurse = N.employeeid</span>
+<span class="s2">  and N.registered = True</span>
+<span class="s2">)</span>
+
+
+<span class="s2">and not Pt.pcp in (</span>
+<span class="s2">  select head from Department</span>
+<span class="s2">)</span>
+<span class="s2">;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>patient</th>
+      <th>physician</th>
     </tr>
   </thead>
   <tbody>
