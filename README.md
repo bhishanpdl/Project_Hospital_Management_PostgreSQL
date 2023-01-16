@@ -240,6 +240,15 @@ SELECT Name
                   AND Physician = U.Physician
             )
        );
+       
+SELECT Name FROM Physician
+ WHERE EmployeeID IN (
+   SELECT Physician FROM Undergoes U WHERE NOT EXISTS(
+               SELECT * FROM Trained_In T
+                WHERE T.Treatment = U.Procedure
+                  AND T.Physician = U.Physician
+                )
+   );
 
 -- another method
 SELECT P.Name FROM
