@@ -300,6 +300,13 @@ SELECT P.Name FROM
  Undergoes AS U
  WHERE T.Physician=U.Physician AND T.Treatment=U.Procedure AND U.Date>T.CertificationExpires AND P.EmployeeID=U.Physician
 
+-- chatgpt answer
+SELECT P.Name
+FROM Physician P
+JOIN Undergoes U ON P.EmployeeID = U.Physician
+LEFT JOIN Trained_In T ON U.Procedure = T.Treatment AND P.EmployeeID = T.Physician
+WHERE T.Treatment IS NULL
+
 ```
 
 ## Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on, and date when the certification expired.
