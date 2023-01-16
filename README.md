@@ -261,6 +261,18 @@ SELECT Name
                  AND Undergoes.Procedure=Trained_In.Treatment
        WHERE Treatment IS NULL
    )
+   
+-- chatgpt using cte
+WITH certified_procedures AS (
+SELECT Physician, Procedure FROM Trained_In
+)
+SELECT Name FROM Physician
+WHERE EmployeeID IN (
+SELECT Physician FROM Undergoes U
+WHERE NOT EXISTS (SELECT 1 FROM certified_procedures 
+WHERE Physician = U.Physician AND Procedure = U.Procedure)
+);
+
 ```
 
 ## Same as the previous query, but include the following information in the results: Physician name, name of procedure, date when the procedure was carried out, name of the patient the procedure was carried out on.
