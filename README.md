@@ -209,6 +209,20 @@ CREATE TABLE Undergoes (
 );
 ```
 
+
+# Entity Relation Diagram (ERD)
+```python
+from sqlalchemy import create_engine
+from eralchemy import render_er
+
+# Create a connection to the database
+engine = create_engine('postgresql://username:password@host:port/dbname')
+
+# Generate the ERD
+render_er(engine, 'erd.png')
+
+```
+
 # SQL Queries
 
 ## Obtain the names of all physicians that have performed a medical procedure they have never been certified to perform
