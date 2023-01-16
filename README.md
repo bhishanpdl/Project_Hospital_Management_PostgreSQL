@@ -274,6 +274,22 @@ SELECT P.Name,Pr.Name,U.Date,Pt.Name FROM
     EXCEPT
     SELECT Physician, Treatment FROM Trained_in) AS Pe
  WHERE P.EmployeeID=Pe.Physician AND Pe.Procedure=Pr.Code AND Pe.Physician=U.Physician AND Pe.Procedure=U.Procedure AND U.Patient=Pt.SSN
+ 
+-- chatgpt method
+SELECT P.Name AS Physician_Name, U.Procedure_Name, U.Date, Pa.Name AS Patient_Name
+FROM Physician P
+JOIN Undergoes U ON P.EmployeeID = U.Physician
+JOIN Patient Pa ON U.Patient = Pa.SSN
+LEFT JOIN Trained_In T ON U.Procedure = T.Treatment AND P.EmployeeID = T.Physician
+WHERE T.Treatment IS NULL
+
+-- chatgpt more optimized code
+SELECT P.Name AS Physician_Name, U.Procedure_Name, U.Date, Pa.Name AS Patient_Name
+FROM Physician P
+JOIN Undergoes U ON P.EmployeeID = U.Physician
+JOIN Patient Pa ON U.Patient = Pa.SSN
+WHERE NOT EXISTS (SELECT 1 FROM Trained_In T WHERE T.Physician = P.EmployeeID AND T.Treatment = U.Procedure)
+
 ```
 
 ## Obtain the names of all physicians that have performed a medical procedure that they are certified to perform, but such that the procedure was done at a date (Undergoes.Date) after the physician's certification expired (Trained_In.CertificationExpires)
@@ -320,6 +336,14 @@ SELECT P.Name AS Physician, Pr.Name AS Procedure, U.Date, Pt.Name AS Patient, T.
     AND Pr.Code = T.Treatment
     AND P.EmployeeID = T.Physician
     AND U.Date > T.CertificationExpires
+    
+  -- chatgpt answer
+  SELECT P.Name
+FROM Physician P
+JOIN Undergoes U ON P.EmployeeID = U.Physician
+JOIN Trained_In T ON U.Procedure = T.Treatment AND P.EmployeeID = T.Physician
+WHERE U.Date > T.CertificationExpires
+
 ```
 
 ## Obtain the information for appointments where a patient met with a physician other than his/her primary care physician. Show the following information: Patient name, physician name, nurse name (if any), start and end time of appointment, examination room, and the name of the patient's primary care physician.
@@ -331,6 +355,28 @@ SELECT Pt.Name AS Patient, Ph.Name AS Physician, N.Name AS Nurse, A.Start, A.End
    AND A.Physician = Ph.EmployeeID
    AND Pt.PCP = PhPCP.EmployeeID
    AND A.Physician <> Pt.PCP;
+   
+-- chatgpt
+SELECT Pa.Name AS Patient_Name, Ph.Name AS Physician_Name, N.Name AS Nurse_Name, A.Start, A.End, A.ExaminationRoom, Pcp.Name AS PCP_Name
+FROM Appointment A
+JOIN Patient Pa ON A.Patient = Pa.SSN
+JOIN Physician Ph ON A.Physician = Ph.EmployeeID
+LEFT JOIN Nurse N ON A.PrepNurse = N.EmployeeID
+JOIN Physician Pcp ON Pa.PCP = Pcp.EmployeeID
+WHERE Ph.EmployeeID != Pa.PCP
+
+--cgpt optimized
+WITH cte AS (
+SELECT A.*, Pa.PCP as PCP
+FROM Appointment A
+JOIN Patient Pa ON A.Patient = Pa.SSN)
+SELECT Pa.Name AS Patient_Name, Ph.Name AS Physician_Name, N.Name AS Nurse_Name, cte.Start, cte.End, cte.ExaminationRoom, Pcp.Name AS PCP_Name
+FROM cte
+JOIN Physician Ph ON cte.Physician = Ph.EmployeeID
+LEFT JOIN Nurse N ON cte.PrepNurse = N.EmployeeID
+JOIN Physician Pcp ON cte.PCP = Pcp.EmployeeID
+WHERE Ph.EmployeeID != cte.PCP
+
 ```
 
 ## The Patient field in Undergoes is redundant, since we can obtain it from the Stay table. There are no constraints in force to prevent inconsistencies between these two tables. More specifically, the Undergoes table may include a row where the patient ID does not match the one we would obtain from the Stay table through the Undergoes.Stay foreign key. Select all rows from Undergoes that exhibit this inconsistency.
@@ -342,6 +388,19 @@ SELECT * FROM Undergoes U
      SELECT Patient FROM Stay S
       WHERE U.Stay = S.StayID
    );
+   
+-- chatgpt
+SELECT U.*
+FROM Undergoes U
+JOIN Stay S ON U.Stay = S.StayID
+WHERE U.Patient != S.Patient
+
+-- chatgpt optimized
+WITH cte AS (SELECT S.*, U.Patient as Patient_U FROM Stay S JOIN Undergoes U ON S.StayID = U.Stay)
+SELECT cte.*
+FROM cte
+WHERE cte.Patient != cte.Patient_U
+
 ```
 
 ## Obtain the names of all the nurses who have ever been on call for room 123.
@@ -355,6 +414,22 @@ SELECT N.Name FROM Nurse N
         AND OC.BlockCode = R.BlockCode
         AND R.Number = 123
    );
+   
+-- chatgpt
+SELECT N.Name
+FROM Nurse N
+JOIN OnCall OC ON N.EmployeeID = OC.Nurse
+JOIN Room R ON OC.BlockFloor = R.BlockFloor AND OC.BlockCode = R.BlockCode
+WHERE R.Number = 123
+
+   
+-- chatgpt
+SELECT N.Name
+FROM Nurse N
+JOIN OnCall OC ON N.EmployeeID = OC.Nurse
+WHERE OC.Room = 123
+
+
 ```
 
 ## The hospital has several examination rooms where appointments take place. Obtain the number of appointments that have taken place in each examination room.
