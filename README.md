@@ -214,6 +214,7 @@ CREATE TABLE Undergoes (
 ## Obtain the names of all physicians that have performed a medical procedure they have never been certified to perform
 
 ```sql
+-- method 01
 SELECT Name
   FROM Physician
  WHERE EmployeeID IN
@@ -226,6 +227,7 @@ SELECT Name
             )
        );
 
+-- another method
 SELECT P.Name FROM
  Physician AS P,
  (SELECT Physician, Procedure FROM Undergoes
@@ -233,7 +235,7 @@ SELECT P.Name FROM
     SELECT Physician, Treatment FROM Trained_in) AS Pe
  WHERE P.EmployeeID=Pe.Physician
 
-
+-- another method
 SELECT Name
   FROM Physician
  WHERE EmployeeID IN
@@ -262,6 +264,7 @@ SELECT P.Name AS Physician, Pr.Name AS Procedure, U.Date, Pt.Name AS Patient
                 AND T.Physician = U.Physician
               );
 
+-- another method
 SELECT P.Name,Pr.Name,U.Date,Pt.Name FROM
  Physician AS P,
  Procedure AS Pr,
@@ -290,7 +293,7 @@ SELECT Name
                )
        );
 
-
+-- another method
 SELECT P.Name FROM
  Physician AS P,
  Trained_In T,
